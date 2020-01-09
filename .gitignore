@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+psstop
 
 # Test binary, built with `go test -c`
 *.test

@@ -30,9 +30,9 @@ PSSTOP try to follow the philosophy of do one thing and do it well.
 	$ psstop -p  systemd
 
 	 Process Name	PID		PSS Memory (Kb)
-	 ------------	----	--------------
-	 systemd		596		2986 Kb
-	 systemd		1		4642 Kb
+	 ------------	----		--------------
+	 systemd	596		2986 Kb
+	 systemd	1		4642 Kb
 
 	 Total				7628	 Kb
 	 Total				7	 Mb

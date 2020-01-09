@@ -75,17 +75,18 @@ Create a Unit file to define a systemd service:
 /lib/systemd/system/psstop.service
 
 ```
-    [Unit]
-    Description=psstop systemd service.
+[Unit]
+Description=psstop systemd service.
 
-    [Service]
-    Type=simple
-    ExecStart=/bin/bash /usr/bin/psstop -p <process name to monitor>
+[Service]
+Type=simple
+ExecStart=/usr/bin/smartpsstop -m -p systemd
+Restart=on-failure
+StandardOutput=file:/var/log/logfile
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 ```
-
 
 ## Deployment
 

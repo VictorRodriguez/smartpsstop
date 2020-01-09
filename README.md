@@ -13,15 +13,15 @@ PSSTOP try to follow the philosophy of do one thing and do it well.
 	$ psstop
 	[short example list]
 
-	Process Name		PID		PSS Memory (Kb)
+	Process Name		PID	PSS Memory (Kb)
 	------------		----	--------------
-	vim					50300	9236 Kb
+	vim			50300	9236 Kb
 	systemd-resolve		46529	9842 Kb
-	psstop				50324	10288 Kb
-	NetworkManager		238		10443 Kb
+	psstop			50324	10288 Kb
+	NetworkManager		238	10443 Kb
 
- 	Total						87319	 Kb
-	Total						87	 	Mb
+ 	Total				87319	 Kb
+	Total				87	 Mb
 	Total number of processes: 	87
 	```
 
@@ -34,8 +34,8 @@ PSSTOP try to follow the philosophy of do one thing and do it well.
 	 systemd		596		2986 Kb
 	 systemd		1		4642 Kb
 
-	 Total							7628	 Kb
-	 Total							7	 Mb
+	 Total				7628	 Kb
+	 Total				7	 Mb
 	 Total number of processes: 	2
 	```
 

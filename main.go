@@ -90,8 +90,7 @@ func scan(process_name string) ([]process, uint64) {
 				check(err)
 				p.name = strings.TrimSuffix(string(dat), "\n")
 
-				file, err := os.Open(directory + f.Name() + "/smaps")
-				check(err)
+				file, _ := os.Open(directory + f.Name() + "/smaps")
 				defer file.Close()
 
 				scanner := bufio.NewScanner(file)

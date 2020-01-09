@@ -16,7 +16,6 @@ PSSTOP try to follow the philosophy of do one thing and do it well.
 	Process Name		PID	PSS Memory (Kb)
 	------------		----	--------------
 	vim			50300	9236 Kb
-	systemd-resolve		46529	9842 Kb
 	psstop			50324	10288 Kb
 	NetworkManager		238	10443 Kb
 

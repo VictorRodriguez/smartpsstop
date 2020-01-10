@@ -67,7 +67,9 @@ func write_csv(process_list []process, file_name string) {
 	}
 }
 
-func monitor(delay int, process_name string) {
+func monitor(process_name string) {
+	process_list, total_PSS_kb := scan(process_name)
+	print_list(process_list, total_PSS_kb)
 }
 
 func scan(process_name string) ([]process, uint64) {
@@ -177,13 +179,10 @@ func main() {
 		process_name = *process_namePtr
 	}
 	if *monitorPtr {
-		//TODO implement a thread that monitor every X seconds/ms
 		for {
+			go monitor(process_name)
 			time.Sleep(time.Duration(delay) * time.Millisecond)
-			process_list, total_PSS_kb = scan(process_name)
-			print_list(process_list, total_PSS_kb)
 		}
-		os.Exit(0)
 	}
 
 	process_list, total_PSS_kb = scan(process_name)

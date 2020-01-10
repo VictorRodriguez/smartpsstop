@@ -99,7 +99,7 @@ see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Victor Rodriguez** - *Initial work* - [PurpleBooth](https://github.com/VictorRodriguez)
+* **Victor Rodriguez** - *Initial work* - [VictorRodriguez](https://github.com/VictorRodriguez)
 
 ## License
 

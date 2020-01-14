@@ -1,12 +1,29 @@
 # PSSTOP
 
-PSSTOP is a tool to detect and track process with eavy use of memory. It runs
-on baremetal, virtual machines or contianers.
+PSSTOP is a tool to detect and track process with heavy use of memory. It runs
+on bare metal, virtual machines or containers.
+
+It uses the Proportional Set Size (PSS) memory from the /proc directory to measure the memory of each process. 
+
+In computing, proportional set size (PSS) is the portion of main memory (RAM) occupied by a process and is composed by the private memory of that process plus the proportion of shared memory with one or more other processes. Unshared memory including the proportion of shared memory is reported as the PSS.
+
+Example:
+
+    Process A has 50 KiB of unshared memory
+    Process B has 300 KiB of unshared memory
+    Both process A and process B have 100 KiB of the same shared memory region
+
+Since the PSS is defined as the sum of the unshared memory of a process and the proportion of memory shared with other processes, the PSS for these two processes are as follows:
+
+    PSS of process A = 50 KiB + (100 KiB / 2) = 100 KiB
+    PSS of process B = 300 KiB + (100 KiB / 2) = 350 KiB
+
+PSS solves the complications when trying to count the "real memory" used by a process. The concepts of resident set size or virtual memory size (VmSize) weren't helping developers who tried to know how much memory their programs were using.
 
 
 ## Architecture
 
-PSSTOP try to follow the philosophy of do one thing and do it well.
+PSSTOP tries to follow the philosophy of doing one thing and do it well.
 
 * Run on all in one systems:
 	```
@@ -43,7 +60,7 @@ TODO:
 * Run as a service and save the data in a time series DB (influx DB) in a
 	server system
 
-* Use statistics algorithms to detect regresions on client system under
+* Use statistics algorithms to detect regressions on client system under
 analysis
 
 ## Getting Started
@@ -54,7 +71,7 @@ how to deploy the project on a live system.
 
 ### Prerequisites
 
-The client binary is build statically, it should not require more than libc to
+The client binary is built statically, it should not require more than libc to
 run inside the system under analysis.
 
 ### Installing

@@ -20,7 +20,6 @@ type process struct {
 	pid    int
 	name   string
 	PSS_kb uint64
-	valid  int
 }
 
 func check(e error) {
@@ -158,15 +157,9 @@ func main() {
 
 	var process_name string
 	var csv_file_name string
-	var delay int
+	var delay int = 1000
 	var process_list []process
-
-	process_name = ""
-	csv_file_name = ""
-	delay = 1000
-
 	var total_PSS_kb uint64
-	total_PSS_kb = 0
 
 	monitorPtr := flag.Bool("m", false, "Monitor Mode")
 	process_namePtr := flag.String("p", "",

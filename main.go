@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net"
 	"os"
 	"regexp"
 	"sort"
@@ -22,6 +23,7 @@ type process struct {
 	PSS_kb uint64
 }
 
+//TODO move all to checkError function
 func check(e error) {
 	if e != nil {
 		panic(e)
@@ -172,9 +174,12 @@ func main() {
 		process_name = *process_namePtr
 	}
 	if *monitorPtr {
+		conn, err := net.Dial("tcp", "127.0.0.1:8081")
+		check(err)
 		for {
 			go monitor(process_name)
 			time.Sleep(time.Duration(delay) * time.Millisecond)
+			fmt.Fprintf(conn, "hi there"+"\n")
 		}
 	}
 

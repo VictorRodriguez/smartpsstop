@@ -160,6 +160,7 @@ func main() {
 
 	var process_name string
 	var csv_file_name string
+	var server_name string
 	var delay int = 1000
 	var process_list []process
 	var total_PSS_kb uint64
@@ -167,6 +168,8 @@ func main() {
 	monitorPtr := flag.Bool("m", false, "Monitor Mode")
 	process_namePtr := flag.String("p", "",
 		"Process name to measure PSS memory")
+	server_namePtr := flag.String("s", "",
+		"Server IP and port to send data in monitor mode")
 	csv_filePtr := flag.String("f", "",
 		"File name of CSV to save result")
 	flag.Parse()
@@ -174,8 +177,12 @@ func main() {
 	if *process_namePtr != "" {
 		process_name = *process_namePtr
 	}
+
+	if *server_namePtr != "" {
+		server_name = *server_namePtr
+	}
 	if *monitorPtr {
-		conn, err := net.Dial("tcp", "127.0.0.1:8081")
+		conn, err := net.Dial("tcp", server_name)
 		check(err)
 		for {
 			go monitor(process_name, conn)

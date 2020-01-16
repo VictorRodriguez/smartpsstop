@@ -1,0 +1,12 @@
+[Unit]
+Description=psstop systemd service.
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/smartpsstop.conf
+ExecStart=/usr/bin/smartpsstop -m -s ${SERVER_ADDR}:${SERVER_PORT}
+Restart=on-failure
+# StandardOutput=file:/var/log/logfile
+
+[Install]
+WantedBy=multi-user.target

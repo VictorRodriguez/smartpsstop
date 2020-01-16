@@ -4,6 +4,6 @@ all:
 static:
 	go build -o psstop -a -ldflags '-extldflags "-static"' main.go
 clean:
-	rm -rf psstop
+	rm -rf psstop tcp-server
 	rm -rf *.csv
 

@@ -68,9 +68,10 @@ func write_csv(process_list []process, file_name string) {
 	}
 }
 
-func monitor(process_name string) {
+func monitor(process_name string, conn net.Conn) {
 	process_list, total_PSS_kb := scan(process_name)
 	print_list(process_list, total_PSS_kb)
+	fmt.Fprintf(conn, "hi there"+"\n")
 }
 
 func scan(process_name string) ([]process, uint64) {
@@ -177,9 +178,8 @@ func main() {
 		conn, err := net.Dial("tcp", "127.0.0.1:8081")
 		check(err)
 		for {
-			go monitor(process_name)
+			go monitor(process_name, conn)
 			time.Sleep(time.Duration(delay) * time.Millisecond)
-			fmt.Fprintf(conn, "hi there"+"\n")
 		}
 	}
 

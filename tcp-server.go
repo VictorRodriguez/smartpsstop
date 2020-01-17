@@ -23,6 +23,6 @@ func main() {
 			log.Fatal(err)
 		}
 		// output message received
-		fmt.Print("Message Received:", string(message))
+		fmt.Print("->	", string(message))
 	}
 }

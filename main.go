@@ -68,10 +68,22 @@ func write_csv(process_list []process, file_name string) {
 	}
 }
 
+//TODO make this a json string to send
+func convert_to_json(process_list []process, conn net.Conn) {
+	for _, proc := range process_list {
+		fmt.Fprintf(conn, "%s\t%d\t%d%s"+"\n", proc.name,
+			proc.pid, proc.PSS_kb, " Kb")
+	}
+}
+
 func monitor(process_name string, conn net.Conn) {
 	process_list, total_PSS_kb := scan(process_name)
 	print_list(process_list, total_PSS_kb)
-	fmt.Fprintf(conn, "hi there"+"\n")
+	str := strconv.FormatUint(total_PSS_kb, 10)
+	if conn != nil {
+		fmt.Fprintf(conn, str+"\n")
+		convert_to_json(process_list, conn)
+	}
 }
 
 func scan(process_name string) ([]process, uint64) {
@@ -183,7 +195,9 @@ func main() {
 	}
 	if *monitorPtr {
 		conn, err := net.Dial("tcp", server_name)
-		check(err)
+		if err != nil {
+			checkError("Connection Error\n", err)
+		}
 		for {
 			go monitor(process_name, conn)
 			time.Sleep(time.Duration(delay) * time.Millisecond)

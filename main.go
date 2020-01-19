@@ -23,10 +23,9 @@ type process struct {
 	PSS_kb uint64
 }
 
-//TODO move all to checkError function
 func check(e error) {
 	if e != nil {
-		panic(e)
+		fmt.Print(e)
 	}
 }
 
@@ -133,6 +132,13 @@ func scan(process_name string) ([]process, uint64) {
 				}
 			}
 		}
+
+		if err != nil {
+			slices_process = nil
+			total_PSS_kb = 0
+			return slices_process, total_PSS_kb
+		}
+
 	}
 
 	sort.SliceStable(slices_process, func(i, j int) bool {

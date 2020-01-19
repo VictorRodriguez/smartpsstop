@@ -172,7 +172,7 @@ func main() {
 
 	var process_name string
 	var csv_file_name string
-	var server_name string
+	var server_name string = "127.0.0.1:8081"
 	var delay int = 1000
 	var process_list []process
 	var total_PSS_kb uint64
@@ -198,6 +198,8 @@ func main() {
 		if err != nil {
 			checkError("Connection Error\n", err)
 		}
+		defer conn.Close()
+		fmt.Print("Connecting to : " + server_name)
 		for {
 			go monitor(process_name, conn)
 			time.Sleep(time.Duration(delay) * time.Millisecond)
